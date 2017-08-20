@@ -6,6 +6,7 @@ import android.graphics.*;
 import android.widget.Gallery.*;
 import android.view.*;
 import android.os.*;
+import android.content.res.*;
 
 public class KeyView extends TextView
 {
@@ -13,6 +14,22 @@ public class KeyView extends TextView
 	public String attrShort;
 	public String attrLong;
 	public String attrSpecial;
+	
+	public boolean touchDone = false;
+	public boolean firstDone = false;
+	public static KeyView touchItem;
+	public static Runnable runnable = new Runnable() {
+		public void run() {
+			touchItem.touchDone = true;
+			if (MainService.current != null)
+				MainService.current.exec(touchItem, true);
+			if(touchItem.attrSpecial != null)
+				handler.postDelayed(this,touchItem.firstDone?150:500);
+			touchItem.firstDone = true;
+		}
+	};
+	public static Handler handler = new android.os.Handler();
+	
 	public KeyView(Context context)
 	{
 		super(context);
@@ -34,6 +51,14 @@ public class KeyView extends TextView
 	{
         super.onDraw(canvas);
 	}
+
+	@Override
+	protected void onConfigurationChanged(Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		handler.removeCallbacks(runnable);
+	}
+	
 	public void init()
 	{
 		attrShort = attributes.getAttributeValue("http://neissa.org","short");
@@ -43,37 +68,23 @@ public class KeyView extends TextView
 		setTextSize(20.0f);
 		
 		setOnTouchListener(new OnTouchListener() {
-				public boolean touchDone = false;
-				public boolean firstDone = false;
-				public KeyView touchItem;
-				
-				Runnable runnable = new Runnable() {
-					public void run() {
-						touchDone = true;
-						if (MainService.current != null)
-							MainService.current.exec(touchItem, true);
-						if(touchItem.attrSpecial != null)
-							handler.postDelayed(this,firstDone?150:500);
-						firstDone = true;
-					}
-				};
-				Handler handler = new android.os.Handler();
-				
+
 				@Override
 				public boolean onTouch(View item, MotionEvent event)
 				{
 					if (event.getAction() == MotionEvent.ACTION_DOWN)
 					{
-						touchDone = false;
-						firstDone = false;
+						handler.removeCallbacks(runnable);
 						touchItem = (KeyView)item;
+						touchItem.touchDone = false;
+						touchItem.firstDone = false;
 						item.setBackgroundColor(0xFFFF8800);
 						handler.postDelayed(runnable,100);
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
 					{
 						handler.removeCallbacks(runnable);
-						if (MainService.current != null && !touchDone)
+						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
 						touchItem.setBackgroundColor(0);
 					}
