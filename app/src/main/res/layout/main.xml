@@ -3,7 +3,8 @@
 	xmlns:neissa="http://neissa.org"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="#8800FF"
+	android:background="#DDAAFF"
+	android:orientation="vertical"
 	android:gravity="bottom">
 	<LinearLayout 
 		android:layout_width="match_parent"

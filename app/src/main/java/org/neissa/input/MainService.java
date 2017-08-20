@@ -88,7 +88,13 @@ public class MainService extends InputMethodService
 			}
 		}
 		else
-			ic.commitText(longPressed ? item.attrLong : item.attrShort, 1);
+		{
+			SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
+			String text = longPressed ? sharedPref.getString("key_"+item.attrShort, "") : item.attrShort;
+			if(text.length() == 0)
+				text = longPressed ? item.attrLong : item.attrShort;
+			ic.commitText(text, 1);
+		}
 	}
 
     @Override

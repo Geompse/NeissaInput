@@ -3,6 +3,10 @@ import android.app.*;
 import android.os.*;
 import android.content.res.*;
 import android.view.*;
+import android.widget.*;
+import android.graphics.*;
+import android.content.*;
+import android.text.*;
 
 public class MainActivity extends Activity
 {
@@ -12,14 +16,43 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(MainService.init(getLayoutInflater()));
-	}
-	
-	@Override
-	public void onAttachedToWindow() {
-		super.onAttachedToWindow();
-		//getWindow().setGravity(64);
-		//getWindow().setLayout(-1,500);
-	}
+		LinearLayout mainView = (LinearLayout)MainService.init(getLayoutInflater());
+		for(int i=10; i>=1; i--)
+		{
+			EditText editText = new EditText(this){
+					protected void onDraw(Canvas canvas)
+					{
+						super.onDraw(canvas);
+						
+					}
+			};
+			editText.setHint(""+(i==10?0:i));
+			final SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
+			String text = sharedPref.getString("key_"+editText.getHint(), "");
+			editText.setText(text);
+			editText.addTextChangedListener(new TextWatcher(){
 
+					@Override
+					public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4)
+					{
+					}
+
+					@Override
+					public void onTextChanged(CharSequence p1, int p2, int p3, int p4)
+					{
+						SharedPreferences.Editor editor = sharedPref.edit();
+						editor.putString("key_"+((TextView)getCurrentFocus()).getHint(), p1.toString());
+						editor.commit();
+					}
+
+					@Override
+					public void afterTextChanged(Editable p1)
+					{
+					}
+				});
+			
+			mainView.addView(editText,1);
+		}
+		setContentView(mainView);
+	}
 }
