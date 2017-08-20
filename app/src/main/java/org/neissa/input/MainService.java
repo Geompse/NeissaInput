@@ -26,6 +26,10 @@ public class MainService extends InputMethodService
 				case "TAB":
 					action = KeyEvent.KEYCODE_TAB;
 					break;
+				case "SEARCH":
+					action = KeyEvent.KEYCODE_F;
+					modifier = KeyEvent.META_CTRL_ON;
+					break;
 				case "SELECT":
 					action = KeyEvent.KEYCODE_A;
 					modifier = KeyEvent.META_CTRL_ON;
@@ -49,6 +53,22 @@ public class MainService extends InputMethodService
 				case "REDO":
 					action = KeyEvent.KEYCODE_Y;
 					modifier = KeyEvent.META_CTRL_ON;
+					break;
+				case "BOLD":
+					action = KeyEvent.KEYCODE_B;
+					modifier = KeyEvent.META_CTRL_ON;
+					break;
+				case "ITALIC":
+					action = KeyEvent.KEYCODE_I;
+					modifier = KeyEvent.META_CTRL_ON;
+					break;
+				case "UNDERLINE":
+					action = KeyEvent.KEYCODE_U;
+					modifier = KeyEvent.META_CTRL_ON;
+					break;
+				case "QUIT":
+					action = KeyEvent.KEYCODE_F4;
+					modifier = KeyEvent.META_ALT_ON;
 					break;
 				case "ESC":
 					action = KeyEvent.KEYCODE_ESCAPE;
