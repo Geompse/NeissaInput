@@ -79,7 +79,7 @@ public class KeyView extends TextView
 						touchItem.touchDone = false;
 						touchItem.firstDone = false;
 						item.setBackgroundColor(0xFFFF8800);
-						handler.postDelayed(runnable,100);
+						handler.postDelayed(runnable,150);
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
 					{
