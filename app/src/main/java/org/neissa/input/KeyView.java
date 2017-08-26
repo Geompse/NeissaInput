@@ -67,6 +67,7 @@ public class KeyView extends TextView
 		attrSpecial = attributes.getAttributeValue("http://neissa.org","special");
 		attrHalf = attributes.getAttributeValue("http://neissa.org","half");
 		
+		setTextColor(0xFFFFFFFF);
 		setTextSize(20.0f);
 		if(attrHalf == null)
 			setBackgroundResource(R.drawable.key);
