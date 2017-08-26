@@ -14,6 +14,7 @@ public class KeyView extends TextView
 	public String attrShort;
 	public String attrLong;
 	public String attrSpecial;
+	public String attrHalf;
 	
 	public boolean touchDone = false;
 	public boolean firstDone = false;
@@ -64,9 +65,16 @@ public class KeyView extends TextView
 		attrShort = attributes.getAttributeValue("http://neissa.org","short");
 		attrLong = attributes.getAttributeValue("http://neissa.org","long");
 		attrSpecial = attributes.getAttributeValue("http://neissa.org","special");
+		attrHalf = attributes.getAttributeValue("http://neissa.org","half");
 		
 		setTextSize(20.0f);
-		
+		if(attrHalf == null)
+			setBackgroundResource(R.drawable.key);
+		else if(attrHalf.equals("1"))
+			setBackgroundResource(R.drawable.halfkey1);
+		else if(attrHalf.equals("2"))
+			setBackgroundResource(R.drawable.halfkey2);
+			
 		setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -78,7 +86,8 @@ public class KeyView extends TextView
 						touchItem = (KeyView)item;
 						touchItem.touchDone = false;
 						touchItem.firstDone = false;
-						item.setBackgroundColor(0xFFFF8800);
+						if(!"DELETE".equals(touchItem.attrSpecial) && !"SUPPR".equals(touchItem.attrSpecial))
+							touchItem.setBackgroundColor(0xFFFF8800);
 						handler.postDelayed(runnable,150);
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
@@ -86,7 +95,12 @@ public class KeyView extends TextView
 						handler.removeCallbacks(runnable);
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						touchItem.setBackgroundColor(0);
+						if(attrHalf == null)
+							setBackgroundResource(R.drawable.key);
+						else if(attrHalf.equals("1"))
+							setBackgroundResource(R.drawable.halfkey1);
+						else if(attrHalf.equals("2"))
+							setBackgroundResource(R.drawable.halfkey2);
 					}
 					return true;
 				}
