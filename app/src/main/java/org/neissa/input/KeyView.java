@@ -7,6 +7,8 @@ import android.widget.Gallery.*;
 import android.view.*;
 import android.os.*;
 import android.content.res.*;
+import android.content.pm.*;
+import java.util.*;
 
 public class KeyView extends TextView
 {
@@ -15,22 +17,26 @@ public class KeyView extends TextView
 	public String attrLong;
 	public String attrSpecial;
 	public String attrHalf;
-	
+	public String uid;
+
 	public boolean touchDone = false;
 	public boolean firstDone = false;
-	public static KeyView touchItem;
-	public static Runnable runnable = new Runnable() {
-		public void run() {
-			touchItem.touchDone = true;
-			if (MainService.current != null)
-				MainService.current.exec(touchItem, true);
-			if(touchItem.attrSpecial != null)
-				handler.postDelayed(this,touchItem.firstDone?150:500);
-			touchItem.firstDone = true;
-		}
-	};
+	public KeyView touchItem;
+
+	public static HashMap<String,myRunnable> runnables = new HashMap<String,myRunnable>();
 	public static Handler handler = new android.os.Handler();
-	
+	class myRunnable implements Runnable {
+	public KeyView touchItem;
+	public void run()
+	{
+		touchItem.touchDone = true;
+		if (MainService.current != null)
+			MainService.current.exec(touchItem, true);
+		if (touchItem.attrSpecial != null)
+			handler.postDelayed(this, touchItem.firstDone ?150: 500);
+		touchItem.firstDone = true;
+	}
+	}
 	public KeyView(Context context)
 	{
 		super(context);
@@ -57,25 +63,30 @@ public class KeyView extends TextView
 	protected void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		handler.removeCallbacks(runnable);
+		handler.removeCallbacks(runnables.get(uid));
 	}
-	
+
 	public void init()
 	{
-		attrShort = attributes.getAttributeValue("http://neissa.org","short");
-		attrLong = attributes.getAttributeValue("http://neissa.org","long");
-		attrSpecial = attributes.getAttributeValue("http://neissa.org","special");
-		attrHalf = attributes.getAttributeValue("http://neissa.org","half");
-		
+		attrShort = attributes.getAttributeValue("http://neissa.org", "short");
+		attrLong = attributes.getAttributeValue("http://neissa.org", "long");
+		attrSpecial = attributes.getAttributeValue("http://neissa.org", "special");
+		attrHalf = attributes.getAttributeValue("http://neissa.org", "half");
+		uid = attrShort+"#"+attrLong+"#"+attrSpecial+"#"+attrHalf+"#"+(String)getText();
+		if (!runnables.containsKey(uid))
+		{
+			runnables.put(uid, new myRunnable());
+		}
+		runnables.get(uid).touchItem = this;
 		setTextColor(0xFFFFFFFF);
 		setTextSize(20.0f);
-		if(attrHalf == null)
+		if (attrHalf == null)
 			setBackgroundResource(R.drawable.key);
-		else if(attrHalf.equals("1"))
+		else if (attrHalf.equals("1"))
 			setBackgroundResource(R.drawable.halfkey1);
-		else if(attrHalf.equals("2"))
+		else if (attrHalf.equals("2"))
 			setBackgroundResource(R.drawable.halfkey2);
-			
+
 		setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -83,24 +94,24 @@ public class KeyView extends TextView
 				{
 					if (event.getAction() == MotionEvent.ACTION_DOWN)
 					{
-						handler.removeCallbacks(runnable);
+						handler.removeCallbacks(runnables.get(uid));
 						touchItem = (KeyView)item;
 						touchItem.touchDone = false;
 						touchItem.firstDone = false;
-						if(!"DELETE".equals(touchItem.attrSpecial) && !"SUPPR".equals(touchItem.attrSpecial))
+						if (!"DELETE".equals(touchItem.attrSpecial) && !"SUPPR".equals(touchItem.attrSpecial))
 							touchItem.setBackgroundColor(0xFFFF8800);
-						handler.postDelayed(runnable,150);
+						handler.postDelayed(runnables.get(uid), 150);
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
 					{
-						handler.removeCallbacks(runnable);
+						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						if(attrHalf == null)
+						if (attrHalf == null)
 							setBackgroundResource(R.drawable.key);
-						else if(attrHalf.equals("1"))
+						else if (attrHalf.equals("1"))
 							setBackgroundResource(R.drawable.halfkey1);
-						else if(attrHalf.equals("2"))
+						else if (attrHalf.equals("2"))
 							setBackgroundResource(R.drawable.halfkey2);
 					}
 					return true;

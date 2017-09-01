@@ -11,6 +11,7 @@
 		<service
 			android:name=".MainService"
 			android:label="Neissa IME"
+			android:configChanges="keyboardHidden|orientation|screenSize"
 			android:permission="android.permission.BIND_INPUT_METHOD">
 			<meta-data android:name="android.view.im" android:resource="@xml/method"/>
 			<intent-filter>
@@ -20,7 +21,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-			android:theme="@style/AppTheme">
+			android:theme="@style/AppTheme"
+			android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
