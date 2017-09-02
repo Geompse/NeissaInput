@@ -16,14 +16,21 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		LinearLayout mainView = (LinearLayout)MainService.init(getLayoutInflater(),R.layout.schemapt);
-		for(int i=10; i>=1; i--)
+		
+		LinearLayout mainView = new LinearLayout(this);
+		mainView.setOrientation(LinearLayout.VERTICAL);
+		
+		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
+		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemapt));
+		for(int i=0; i<2; i++)
+			((LinearLayout)((LinearLayout)mainView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = 500;
+		
+		for(int i=1; i<=10; i++)
 		{
 			EditText editText = new EditText(this){
 					protected void onDraw(Canvas canvas)
 					{
 						super.onDraw(canvas);
-						
 					}
 			};
 			editText.setHint(""+(i==10?0:i));
@@ -51,8 +58,11 @@ public class MainActivity extends Activity
 					}
 				});
 			
-			mainView.addView(editText,1);
+			mainView.addView(editText);
 		}
-		setContentView(mainView);
+		
+		ScrollView scrollView = new ScrollView(this);
+		scrollView.addView(mainView);
+		setContentView(scrollView);
 	}
 }
