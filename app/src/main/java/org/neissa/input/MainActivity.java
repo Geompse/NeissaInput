@@ -16,7 +16,7 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		LinearLayout mainView = (LinearLayout)MainService.init(getLayoutInflater());
+		LinearLayout mainView = (LinearLayout)MainService.init(getLayoutInflater(),R.layout.schemapt);
 		for(int i=10; i>=1; i--)
 		{
 			EditText editText = new EditText(this){

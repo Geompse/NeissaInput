@@ -26,16 +26,16 @@ public class KeyView extends TextView
 	public static HashMap<String,myRunnable> runnables = new HashMap<String,myRunnable>();
 	public static Handler handler = new android.os.Handler();
 	class myRunnable implements Runnable {
-	public KeyView touchItem;
-	public void run()
-	{
-		touchItem.touchDone = true;
-		if (MainService.current != null)
-			MainService.current.exec(touchItem, true);
-		if (touchItem.attrSpecial != null)
-			handler.postDelayed(this, touchItem.firstDone ?150: 500);
-		touchItem.firstDone = true;
-	}
+		public KeyView touchItem;
+		public void run()
+		{
+			touchItem.touchDone = true;
+			if (MainService.current != null)
+				MainService.current.exec(touchItem, true);
+			if (touchItem.attrSpecial != null)
+				handler.postDelayed(this, touchItem.firstDone ?150: 500);
+			touchItem.firstDone = true;
+		}
 	}
 	public KeyView(Context context)
 	{
@@ -72,11 +72,9 @@ public class KeyView extends TextView
 		attrLong = attributes.getAttributeValue("http://neissa.org", "long");
 		attrSpecial = attributes.getAttributeValue("http://neissa.org", "special");
 		attrHalf = attributes.getAttributeValue("http://neissa.org", "half");
-		uid = attrShort+"#"+attrLong+"#"+attrSpecial+"#"+attrHalf+"#"+(String)getText();
+		uid = attrShort+"#"+attrLong+"#"+attrSpecial+"#"+attrHalf;
 		if (!runnables.containsKey(uid))
-		{
 			runnables.put(uid, new myRunnable());
-		}
 		runnables.get(uid).touchItem = this;
 		setTextColor(0xFFFFFFFF);
 		setTextSize(20.0f);
@@ -98,21 +96,28 @@ public class KeyView extends TextView
 						touchItem = (KeyView)item;
 						touchItem.touchDone = false;
 						touchItem.firstDone = false;
-						if (!"DELETE".equals(touchItem.attrSpecial) && !"SUPPR".equals(touchItem.attrSpecial))
+						if (touchItem.attrHalf == null)
 							touchItem.setBackgroundColor(0xFFFF8800);
-						handler.postDelayed(runnables.get(uid), 150);
+						else
+						{
+							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundColor(0xFFFF8800);
+							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundColor(0xFFFF8800);
+						}
+						if(!"LANG".equals(touchItem.attrSpecial))
+							handler.postDelayed(runnables.get(uid), 150);
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
 					{
 						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						if (attrHalf == null)
+						if (touchItem.attrHalf == null)
 							setBackgroundResource(R.drawable.key);
-						else if (attrHalf.equals("1"))
-							setBackgroundResource(R.drawable.halfkey1);
-						else if (attrHalf.equals("2"))
-							setBackgroundResource(R.drawable.halfkey2);
+						else
+						{
+							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundResource(R.drawable.halfkey1);
+							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundResource(R.drawable.halfkey2);
+						}
 					}
 					return true;
 				}

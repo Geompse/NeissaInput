@@ -12,6 +12,7 @@ import android.view.inputmethod.*;
 public class MainService extends InputMethodService
 {
 	public static MainService current;
+	public int schema = 0;
 
 	public void exec(KeyView item, boolean longPressed)
 	{
@@ -46,6 +47,9 @@ public class MainService extends InputMethodService
 					action = KeyEvent.KEYCODE_V;
 					modifier = KeyEvent.META_CTRL_ON;
 					break;
+				case "LANG":
+					setInputView(init(getLayoutInflater(),schema==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr));
+					return;
 				case "UNDO":
 					action = KeyEvent.KEYCODE_Z;
 					modifier = KeyEvent.META_CTRL_ON;
@@ -121,11 +125,13 @@ public class MainService extends InputMethodService
     public View onCreateInputView()
     {
 		current = this;
-        return init(getLayoutInflater());
+        return init(getLayoutInflater(),schema==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr);
 	}
-	public static View init(LayoutInflater parent)
+	public static View init(LayoutInflater parent,int schema)
 	{
-		LinearLayout view = (LinearLayout)parent.inflate(R.layout.main, null);
+		if(MainService.current != null)
+			MainService.current.schema = schema;
+		LinearLayout view = (LinearLayout)parent.inflate(schema, null);
 		return view;
     }
 }
