@@ -12,7 +12,6 @@ import android.view.inputmethod.*;
 public class MainService extends InputMethodService
 {
 	public static MainService current;
-	public int schema = 0;
 
 	public void exec(KeyView item, boolean longPressed)
 	{
@@ -48,7 +47,12 @@ public class MainService extends InputMethodService
 					modifier = KeyEvent.META_CTRL_ON;
 					break;
 				case "LANG":
-					setInputView(init(getLayoutInflater(),schema==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr));
+					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
+					SharedPreferences.Editor editor = sharedPref.edit();
+					int schema = sharedPref.getInt("schema",R.layout.schemafr)==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr;
+					editor.putInt("schema",schema);
+					editor.commit();
+					setInputView(init(getLayoutInflater(),schema));
 					return;
 				case "UNDO":
 					action = KeyEvent.KEYCODE_Z;
@@ -125,12 +129,11 @@ public class MainService extends InputMethodService
     public View onCreateInputView()
     {
 		current = this;
-        return init(getLayoutInflater(),schema==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr);
+		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
+        return init(getLayoutInflater(),sharedPref.getInt("schema",R.layout.schemafr));
 	}
 	public static View init(LayoutInflater parent,int schema)
 	{
-		if(MainService.current != null)
-			MainService.current.schema = schema;
 		LinearLayout view = (LinearLayout)parent.inflate(schema, null);
 		return view;
     }
