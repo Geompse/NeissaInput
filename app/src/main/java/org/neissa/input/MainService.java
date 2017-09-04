@@ -16,13 +16,63 @@ public class MainService extends InputMethodService
 	public void exec(KeyView item, boolean longPressed)
 	{
 		InputConnection ic = getCurrentInputConnection();
-		
+
 		if (item.attrSpecial != null)
 		{
 			int action = 0;
 			int modifier = 0;
+			int[] select = {0,0,0};
 			switch (item.attrSpecial)
 			{
+				case "SELECT1_LEFT":
+					select[0] = -1;
+					select[1] = 0;
+					select[2] = KeyEvent.KEYCODE_DPAD_LEFT;
+					break;
+				case "SELECT1_RIGHT":
+					select[0] = 1;
+					select[1] = 0;
+					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
+					break;
+				case "SELECT1_UP":
+					select[0] = -100;
+					select[1] = 0;
+					select[2] = KeyEvent.KEYCODE_DPAD_UP;
+					break;
+				case "SELECT1_DOWN":
+					select[0] = 100;
+					select[1] = 0;
+					select[2] = KeyEvent.KEYCODE_DPAD_DOWN;
+					break;
+				case "LANG":
+					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
+					SharedPreferences.Editor editor = sharedPref.edit();
+					int schema = sharedPref.getInt("schema", R.layout.schemafr) == R.layout.schemafr ?R.layout.schemapt: R.layout.schemafr;
+					editor.putInt("schema", schema);
+					editor.commit();
+					setInputView(init(getLayoutInflater(), schema));
+					return;
+				case "SELECT2_LEFT":
+					select[0] = 0;
+					select[1] = -1;
+					select[2] = KeyEvent.KEYCODE_DPAD_LEFT;
+					break;
+				case "SELECT2_RIGHT":
+					select[0] = 0;
+					select[1] = 1;
+					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
+					break;
+				case "SELECT2_UP":
+					select[0] = 0;
+					select[1] = -100;
+					select[2] = KeyEvent.KEYCODE_DPAD_UP;
+					break;
+				case "SELECT2_DOWN":
+					select[0] = 0;
+					select[1] = 100;
+					select[2] = KeyEvent.KEYCODE_DPAD_DOWN;
+					break;
+
 				case "TAB":
 					action = KeyEvent.KEYCODE_TAB;
 					break;
@@ -46,14 +96,6 @@ public class MainService extends InputMethodService
 					action = KeyEvent.KEYCODE_V;
 					modifier = KeyEvent.META_CTRL_ON;
 					break;
-				case "LANG":
-					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
-					SharedPreferences.Editor editor = sharedPref.edit();
-					int schema = sharedPref.getInt("schema",R.layout.schemafr)==R.layout.schemafr?R.layout.schemapt:R.layout.schemafr;
-					editor.putInt("schema",schema);
-					editor.commit();
-					setInputView(init(getLayoutInflater(),schema));
-					return;
 				case "UNDO":
 					action = KeyEvent.KEYCODE_Z;
 					modifier = KeyEvent.META_CTRL_ON;
@@ -81,14 +123,14 @@ public class MainService extends InputMethodService
 				case "ESC":
 					action = KeyEvent.KEYCODE_ESCAPE;
 					break;
-				
+
 				case "DELETE":
 					action = KeyEvent.KEYCODE_DEL;
 					break;
 				case "SUPPR":
 					action = KeyEvent.KEYCODE_FORWARD_DEL;
 					break;
-					
+
 				case "ARROW_LEFT":
 					action = KeyEvent.KEYCODE_DPAD_LEFT;
 					if (longPressed)
@@ -109,6 +151,17 @@ public class MainService extends InputMethodService
 					action = longPressed ? KeyEvent.KEYCODE_PAGE_DOWN : KeyEvent.KEYCODE_DPAD_DOWN;
 					break;
 			}
+			if (select[2] != 0)
+			{
+				ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
+				if (et != null)
+					ic.setSelection(et.selectionStart + select[0], et.selectionEnd + select[1]);
+				else
+				{
+					action = select[2];
+					modifier = (longPressed ? KeyEvent.META_CTRL_ON : 0) + KeyEvent.META_SHIFT_ON;
+				}
+			}
 			if (action != 0)
 			{
 				ic.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, action, 0, modifier));
@@ -117,9 +170,9 @@ public class MainService extends InputMethodService
 		}
 		else
 		{
-			SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
-			String text = longPressed ? sharedPref.getString("key_"+item.attrShort, "") : item.attrShort;
-			if(text.length() == 0)
+			SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
+			String text = longPressed ? sharedPref.getString("key_" + item.attrShort, "") : item.attrShort;
+			if (text.length() == 0)
 				text = longPressed ? item.attrLong : item.attrShort;
 			ic.commitText(text, 1);
 		}
@@ -129,10 +182,10 @@ public class MainService extends InputMethodService
     public View onCreateInputView()
     {
 		current = this;
-		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input",Context.MODE_PRIVATE);
-        return init(getLayoutInflater(),sharedPref.getInt("schema",R.layout.schemafr));
+		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
+        return init(getLayoutInflater(), sharedPref.getInt("schema", R.layout.schemafr));
 	}
-	public static View init(LayoutInflater parent,int schema)
+	public static View init(LayoutInflater parent, int schema)
 	{
 		LinearLayout view = (LinearLayout)parent.inflate(schema, null);
 		return view;

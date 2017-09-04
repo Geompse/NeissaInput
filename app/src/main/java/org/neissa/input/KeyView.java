@@ -76,7 +76,7 @@ public class KeyView extends TextView
 		if (!runnables.containsKey(uid))
 			runnables.put(uid, new myRunnable());
 		runnables.get(uid).touchItem = this;
-		setTextColor(0xFFFFFFFF);
+		setTextColor(attrSpecial != null && attrSpecial.indexOf("SELECT") == 0 ? 0xFF00CCFF : 0xFFFFFFFF);
 		setTextSize(20.0f);
 		if (attrHalf == null)
 			setBackgroundResource(R.drawable.key);

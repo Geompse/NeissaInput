@@ -7,21 +7,34 @@
 	android:gravity="bottom">
 	<LinearLayout 
 		android:layout_width="match_parent"
-		android:layout_height="400dp"
-		android:weightSum="163"
+		android:layout_height="420dp"
+		android:weightSum="176"
 		android:orientation="vertical"
 		android:gravity="top|center"
 		android:padding="2dp">
-
-		<LinearLayout android:weightSum="11" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="13" android:gravity="top|center">
+		<LinearLayout android:weightSum="9" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="13" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:special="SELECT1_LEFT" android:text="⬅" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:special="SELECT1_RIGHT" android:text="➡" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
+			<org.neissa.input.KeyView neissa:special="SELECT1_UP" android:text="⬆" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:special="SELECT1_DOWN" android:text="⬇" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
+			<org.neissa.input.KeyView neissa:special="LANG" android:text="•FR" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
+			<org.neissa.input.KeyView neissa:special="SELECT2_LEFT" android:text="⬅" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:special="SELECT2_RIGHT" android:text="➡" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
+			<org.neissa.input.KeyView neissa:special="SELECT2_UP" android:text="⬆" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:special="SELECT2_DOWN" android:text="⬇" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<TextView android:text="" android:gravity="top|center" android:layout_width="match_parent" android:layout_height="@dimen/padding" />
+		<LinearLayout android:weightSum="10" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="13" android:gravity="top|center">
 			<org.neissa.input.KeyView neissa:special="TAB" android:text="⟼" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
 			<org.neissa.input.KeyView neissa:special="SELECT" android:text="Ctrl-A" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<org.neissa.input.KeyView neissa:special="CUT" android:text="Ctrl-X" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<org.neissa.input.KeyView neissa:special="COPY" android:text="Ctrl-C" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<org.neissa.input.KeyView neissa:special="PASTE" android:text="Ctrl-V" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
-			<org.neissa.input.KeyView neissa:special="LANG" android:text="•FR" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<TextView android:text="" android:gravity="top|center" android:layout_width="@dimen/padding" android:layout_height="match_parent" />
 			<org.neissa.input.KeyView neissa:special="UNDO" android:text="↶" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<org.neissa.input.KeyView neissa:special="REDO" android:text="↷" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
