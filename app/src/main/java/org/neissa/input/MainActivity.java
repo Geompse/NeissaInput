@@ -21,7 +21,7 @@ public class MainActivity extends Activity
 		mainView.setOrientation(LinearLayout.VERTICAL);
 		
 		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
-		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemapt));
+		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr));
 		for(int i=0; i<2; i++)
 			((LinearLayout)((LinearLayout)mainView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = 500;
 		

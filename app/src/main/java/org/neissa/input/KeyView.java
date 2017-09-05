@@ -57,6 +57,14 @@ public class KeyView extends TextView
 	protected void onDraw(Canvas canvas)
 	{
         super.onDraw(canvas);
+		if ("LANG".equals(attrSpecial))
+		{
+			ViewParent parent = this.getParent();
+			while(parent != null && parent.getParent() != null && !(parent instanceof SchemaView))
+				parent = parent.getParent();
+			if(parent != null)
+				setText("BR".equals(((SchemaView)parent).attrText)?"🇧🇷":"🇫🇷");
+		}
 	}
 
 	@Override
@@ -77,14 +85,15 @@ public class KeyView extends TextView
 			runnables.put(uid, new myRunnable());
 		runnables.get(uid).touchItem = this;
 		setTextColor(attrSpecial != null && attrSpecial.indexOf("SELECT") == 0 ? 0xFF00CCFF : 0xFFFFFFFF);
-		setTextSize(20.0f);
-		if (attrHalf == null)
+		setTextSize(MainService.current != null ? 20.0f : 10.0f);
+		if ("LANG".equals(attrSpecial))
+			setBackgroundColor(0x00000000);
+		else if (attrHalf == null)
 			setBackgroundResource(R.drawable.key);
 		else if (attrHalf.equals("1"))
 			setBackgroundResource(R.drawable.halfkey1);
 		else if (attrHalf.equals("2"))
 			setBackgroundResource(R.drawable.halfkey2);
-
 		setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -111,7 +120,9 @@ public class KeyView extends TextView
 						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						if (touchItem.attrHalf == null)
+						if ("LANG".equals(attrSpecial))
+							setBackgroundColor(0x00000000);
+						else if (touchItem.attrHalf == null)
 							setBackgroundResource(R.drawable.key);
 						else
 						{

@@ -47,10 +47,10 @@ public class MainService extends InputMethodService
 				case "LANG":
 					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = sharedPref.edit();
-					int schema = sharedPref.getInt("schema", R.layout.schemafr) == R.layout.schemafr ?R.layout.schemapt: R.layout.schemafr;
-					editor.putInt("schema", schema);
+					String schemaname = sharedPref.getString("schemaname", "schemafr").equals("schemafr") ? "schemabr" : "schemafr";
+					editor.putString("schemaname", schemaname);
 					editor.commit();
-					setInputView(init(getLayoutInflater(), schema));
+					setInputView(init(getLayoutInflater(), getResources().getIdentifier(schemaname, "layout", getPackageName())));
 					return;
 				case "SELECT2_LEFT":
 					select[0] = 0;
@@ -155,7 +155,11 @@ public class MainService extends InputMethodService
 			{
 				ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
 				if (et != null)
-					ic.setSelection(et.selectionStart + select[0], et.selectionEnd + select[1]);
+				{
+					int start = Math.min(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
+					int stop = Math.max(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
+					ic.setSelection(Math.min(start + select[0], stop), Math.max(start, stop + select[1]));
+				}
 				else
 				{
 					action = select[2];
@@ -183,7 +187,7 @@ public class MainService extends InputMethodService
     {
 		current = this;
 		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
-        return init(getLayoutInflater(), sharedPref.getInt("schema", R.layout.schemafr));
+        return init(getLayoutInflater(), getResources().getIdentifier(sharedPref.getString("schemaname", "schemafr"), "layout", getPackageName()));
 	}
 	public static View init(LayoutInflater parent, int schema)
 	{

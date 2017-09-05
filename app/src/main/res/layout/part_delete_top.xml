@@ -1,0 +1,4 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
+	<org.neissa.input.KeyView neissa:special="DELETE" neissa:half="1" android:text="⌫" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+	<include layout="@layout/separator_x" />
+</merge>
