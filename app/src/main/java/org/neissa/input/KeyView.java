@@ -85,7 +85,7 @@ public class KeyView extends TextView
 			runnables.put(uid, new myRunnable());
 		runnables.get(uid).touchItem = this;
 		setTextColor(attrSpecial != null && attrSpecial.indexOf("SELECT") == 0 ? 0xFF00CCFF : 0xFFFFFFFF);
-		setTextSize(MainService.current != null ? 20.0f : 10.0f);
+		setTextSize(MainService.current != null ? 20.0f : 12.0f);
 		if ("LANG".equals(attrSpecial))
 			setBackgroundColor(0x00000000);
 		else if (attrHalf == null)

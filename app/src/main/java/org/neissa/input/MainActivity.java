@@ -19,11 +19,17 @@ public class MainActivity extends Activity
 		
 		LinearLayout mainView = new LinearLayout(this);
 		mainView.setOrientation(LinearLayout.VERTICAL);
+		mainView.setGravity(Gravity.CENTER);
 		
-		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
-		mainView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr));
+		LinearLayout schemaView = new LinearLayout(this);
+		schemaView.setOrientation(LinearLayout.VERTICAL);
+		schemaView.setGravity(Gravity.CENTER);
+		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
+		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr));
 		for(int i=0; i<2; i++)
-			((LinearLayout)((LinearLayout)mainView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = 500;
+			((LinearLayout)((LinearLayout)schemaView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = 500;
+		mainView.addView(schemaView);
+		schemaView.getLayoutParams().width = 650;
 		
 		for(int i=1; i<=10; i++)
 		{
