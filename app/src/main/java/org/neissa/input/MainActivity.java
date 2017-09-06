@@ -26,7 +26,8 @@ public class MainActivity extends Activity
 		schemaView.setGravity(Gravity.CENTER);
 		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
 		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr));
-		for(int i=0; i<2; i++)
+		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemajp));
+		for(int i=0; i<schemaView.getChildCount(); i++)
 			((LinearLayout)((LinearLayout)schemaView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = 500;
 		mainView.addView(schemaView);
 		schemaView.getLayoutParams().width = 650;

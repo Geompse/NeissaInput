@@ -47,7 +47,8 @@ public class MainService extends InputMethodService
 				case "LANG":
 					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = sharedPref.edit();
-					String schemaname = sharedPref.getString("schemaname", "schemafr").equals("schemafr") ? "schemabr" : "schemafr";
+					String currentSchemaname = sharedPref.getString("schemaname", "schemafr");
+					String schemaname = currentSchemaname.equals("schemafr") ? "schemabr" : (currentSchemaname.equals("schemabr") ? "schemajp" : "schemafr");
 					editor.putString("schemaname", schemaname);
 					editor.commit();
 					setInputView(init(getLayoutInflater(), getResources().getIdentifier(schemaname, "layout", getPackageName())));

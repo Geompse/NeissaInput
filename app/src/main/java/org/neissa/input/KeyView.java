@@ -63,7 +63,10 @@ public class KeyView extends TextView
 			while(parent != null && parent.getParent() != null && !(parent instanceof SchemaView))
 				parent = parent.getParent();
 			if(parent != null)
-				setText("BR".equals(((SchemaView)parent).attrText)?"🇧🇷":"🇫🇷");
+			{
+				String text = ((SchemaView)parent).attrText;
+				setText("JP".equals(text)?"🇯🇵":("BR".equals(text)?"🇧🇷":"🇫🇷"));
+			}
 		}
 	}
 
