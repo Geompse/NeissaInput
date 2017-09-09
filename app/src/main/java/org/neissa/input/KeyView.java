@@ -91,6 +91,8 @@ public class KeyView extends TextView
 		setTextSize(MainService.current != null ? 20.0f : 12.0f);
 		if ("LANG".equals(attrSpecial))
 			setBackgroundColor(0x00000000);
+		else if (attrSpecial != null && attrSpecial.startsWith("SELECT"))
+			setBackgroundResource(R.drawable.transparentkey);
 		else if (attrHalf == null)
 			setBackgroundResource(R.drawable.key);
 		else if (attrHalf.equals("1"))
@@ -123,8 +125,10 @@ public class KeyView extends TextView
 						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						if ("LANG".equals(attrSpecial))
+						if ("LANG".equals(touchItem.attrSpecial))
 							setBackgroundColor(0x00000000);
+						else if (touchItem.attrSpecial != null && attrSpecial.startsWith("SELECT"))
+							setBackgroundResource(R.drawable.transparentkey);
 						else if (touchItem.attrHalf == null)
 							setBackgroundResource(R.drawable.key);
 						else
