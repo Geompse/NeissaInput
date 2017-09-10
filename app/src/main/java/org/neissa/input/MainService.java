@@ -8,6 +8,7 @@ import android.inputmethodservice.*;
 import android.widget.*;
 import android.view.View.*;
 import android.view.inputmethod.*;
+import android.content.res.*;
 
 public class MainService extends InputMethodService
 {
@@ -51,7 +52,7 @@ public class MainService extends InputMethodService
 					String schemaname = currentSchemaname.equals("schemafr") ? "schemabr" : (currentSchemaname.equals("schemabr") ? "schemajp" : "schemafr");
 					editor.putString("schemaname", schemaname);
 					editor.commit();
-					setInputView(init(getLayoutInflater(), getResources().getIdentifier(schemaname, "layout", getPackageName())));
+					setInputView(init(getLayoutInflater(), getCurrentSchema()));
 					return;
 				case "SELECT2_LEFT":
 					select[0] = 0;
@@ -187,8 +188,19 @@ public class MainService extends InputMethodService
     public View onCreateInputView()
     {
 		current = this;
+		return init(getLayoutInflater(),getCurrentSchema());
+	}
+
+	@Override
+	public boolean onEvaluateFullscreenMode()
+	{
+		return false;
+	}
+	
+	public int getCurrentSchema()
+	{
 		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
-        return init(getLayoutInflater(), getResources().getIdentifier(sharedPref.getString("schemaname", "schemafr"), "layout", getPackageName()));
+        return getResources().getIdentifier(sharedPref.getString("schemaname", "schemafr") + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
 	}
 	public static View init(LayoutInflater parent, int schema)
 	{

@@ -6,14 +6,8 @@
 	android:orientation="vertical"
 	android:gravity="bottom"
 	neissa:text="JP">
-	<LinearLayout 
-		android:layout_width="match_parent"
-		android:layout_height="420dp"
-		android:weightSum="233"
-		android:orientation="vertical"
-		android:gravity="top|center"
-		android:padding="2dp">
-		<include layout="@layout/part_header" />
+	<LinearLayout android:layout_width="match_parent" android:layout_height="420dp" android:weightSum="224" android:orientation="vertical" android:gravity="top|center">
+		<include layout="@layout/part_header" w="41" />
 		<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 			<include layout="@layout/part_delete_top" />
 			<org.neissa.input.KeyView neissa:short="ぁ" neissa:long="ァ" android:text="ぁァ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
@@ -31,7 +25,7 @@
 			<org.neissa.input.KeyView neissa:short="ー" neissa:long="ー" android:text="ー" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<include layout="@layout/part_suppr_top" />
 		</LinearLayout>
-		<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="20" android:gravity="top|center">
+		<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 			<include layout="@layout/part_delete_bottom" />
 			<include layout="@layout/separator_x" />
 			<include layout="@layout/part_digits" />

@@ -1,0 +1,149 @@
+<org.neissa.input.SchemaView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:neissa="http://neissa.org"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="bottom"
+	neissa:text="JP">
+	<LinearLayout android:layout_width="match_parent" android:layout_height="260dp" android:weightSum="125" android:orientation="vertical" android:gravity="top|center">
+		<LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:weightSum="2" android:orientation="horizontal" android:gravity="top|center" android:layout_weight="35">
+			<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="41" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
+				<include layout="@layout/part_header" w="41" />
+			</LinearLayout>
+			<include layout="@layout/separator_x" />
+			<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="30" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
+				<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+					<include layout="@layout/part_delete_top" />
+					<org.neissa.input.KeyView neissa:short="ぁ" neissa:long="ァ" android:text="ぁァ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ぃ" neissa:long="ィ" android:text="ぃィ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ぅ" neissa:long="ゥ" android:text="ぅゥ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ぇ" neissa:long="ェ" android:text="ぇェ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ぉ" neissa:long="ォ" android:text="ぉォ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<include layout="@layout/separator_x" />
+					<org.neissa.input.KeyView neissa:short="ゃ" neissa:long="ャ" android:text="ゃャ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ゅ" neissa:long="ュ" android:text="ゅュ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ょ" neissa:long="ョ" android:text="ょョ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="っ" neissa:long="ッ" android:text="っッ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<include layout="@layout/separator_x" />
+					<org.neissa.input.KeyView neissa:short="・" neissa:long="・" android:text="・" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<org.neissa.input.KeyView neissa:short="ー" neissa:long="ー" android:text="ー" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+					<include layout="@layout/part_suppr_top" />
+				</LinearLayout>
+				<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+					<include layout="@layout/part_delete_bottom" />
+					<include layout="@layout/separator_x" />
+					<include layout="@layout/part_digits" />
+					<include layout="@layout/separator_x" />
+					<include layout="@layout/part_suppr_bottom" />
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+		<include layout="@layout/separator_y" />
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="あ" neissa:long="ア" android:text="あア" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="か" neissa:long="カ" android:text="かカ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="さ" neissa:long="サ" android:text="さサ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="た" neissa:long="タ" android:text="たタ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="な" neissa:long="ナ" android:text="なナ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="は" neissa:long="ハ" android:text="はハ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ま" neissa:long="マ" android:text="まマ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="や" neissa:long="ヤ" android:text="やヤ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ら" neissa:long="ラ" android:text="らラ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="わ" neissa:long="ワ" android:text="わワ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<include layout="@layout/separator_x" />
+			<org.neissa.input.KeyView neissa:short="が" neissa:long="ガ" android:text="がガ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ざ" neissa:long="ザ" android:text="ざザ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="だ" neissa:long="ダ" android:text="だダ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ば" neissa:long="バ" android:text="ばバ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぱ" neissa:long="パ" android:text="ぱパ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="い" neissa:long="イ" android:text="いイ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="き" neissa:long="キ" android:text="きキ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="し" neissa:long="シ" android:text="しシ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ち" neissa:long="チ" android:text="ちチ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="に" neissa:long="ニ" android:text="にニ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ひ" neissa:long="ヒ" android:text="ひヒ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="み" neissa:long="ミ" android:text="みミ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="り" neissa:long="リ" android:text="りリ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゐ" neissa:long="ヰ" android:text="ゐヰ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<include layout="@layout/separator_x" />
+			<org.neissa.input.KeyView neissa:short="ぎ" neissa:long="ギ" android:text="ぎギ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="じ" neissa:long="ジ" android:text="じジ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぢ" neissa:long="ヂ" android:text="ぢヂ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="び" neissa:long="ビ" android:text="びビ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぴ" neissa:long="ピ" android:text="ぴピ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="う" neissa:long="ウ" android:text="うウ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="く" neissa:long="ク" android:text="くク" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="す" neissa:long="ス" android:text="すス" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="つ" neissa:long="ツ" android:text="つツ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぬ" neissa:long="ヌ" android:text="ぬヌ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ふ" neissa:long="フ" android:text="ふフ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="む" neissa:long="ム" android:text="むム" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゆ" neissa:long="ユ" android:text="ゆユ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="る" neissa:long="ル" android:text="るル" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゔ" neissa:long="ヴ" android:text="ゔヴ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<include layout="@layout/separator_x" />
+			<org.neissa.input.KeyView neissa:short="ぐ" neissa:long="グ" android:text="ぐグ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ず" neissa:long="ズ" android:text="ずズ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="づ" neissa:long="ヅ" android:text="づヅ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぶ" neissa:long="ブ" android:text="ぶブ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぷ" neissa:long="プ" android:text="ぷプ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="え" neissa:long="エ" android:text="えエ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="け" neissa:long="ケ" android:text="けケ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="せ" neissa:long="セ" android:text="せセ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="て" neissa:long="テ" android:text="てテ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ね" neissa:long="ネ" android:text="ねネ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="へ" neissa:long="ヘ" android:text="へヘ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="め" neissa:long="メ" android:text="めメ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="れ" neissa:long="レ" android:text="れレ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゑ" neissa:long="ヱ" android:text="ゑヱ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<include layout="@layout/separator_x" />
+			<org.neissa.input.KeyView neissa:short="げ" neissa:long="ゲ" android:text="げゲ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぜ" neissa:long="ゼ" android:text="ぜゼ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="で" neissa:long="デ" android:text="でデ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="べ" neissa:long="ベ" android:text="べベ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぺ" neissa:long="ペ" android:text="ぺペ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="お" neissa:long="オ" android:text="おオ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="こ" neissa:long="コ" android:text="こコ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="そ" neissa:long="ソ" android:text="そソ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="と" neissa:long="ト" android:text="とト" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="の" neissa:long="ノ" android:text="のノ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ほ" neissa:long="ホ" android:text="ほホ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="も" neissa:long="モ" android:text="もモ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="よ" neissa:long="ヨ" android:text="よヨ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ろ" neissa:long="ロ" android:text="ろロ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="を" neissa:long="ヲ" android:text="をヲ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<include layout="@layout/separator_x" />
+			<org.neissa.input.KeyView neissa:short="ご" neissa:long="ゴ" android:text="ごゴ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぞ" neissa:long="ゾ" android:text="ぞゾ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ど" neissa:long="ド" android:text="どド" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぼ" neissa:long="ボ" android:text="ぼボ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ぽ" neissa:long="ポ" android:text="ぽポ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+		<LinearLayout android:weightSum="15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+			<org.neissa.input.KeyView neissa:short="," neissa:long=";" android:text=", ;" android:hint=";" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="." neissa:long=":" android:text=". :" android:hint=":" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="'" neissa:long="&quot;" android:text="' &quot;" android:hint="&quot;" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="!" neissa:long="\?" android:text="! \?" android:hint="\?" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ん" neissa:long="ン" android:text="んン" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<TextView android:text="" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:special="SPACE" android:text="Espace/Entrée" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="4" />
+			<include layout="@layout/separator_x" />
+			<TextView android:text="" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゝ" neissa:long="ヽ" android:text="ゝヽ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="ゞ" neissa:long="ヾ" android:text="ゞヾ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="、" neissa:long="、" android:text="、、" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+			<org.neissa.input.KeyView neissa:short="。" neissa:long="。" android:text="。。" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		</LinearLayout>
+	</LinearLayout>
+</org.neissa.input.SchemaView>

@@ -3,6 +3,7 @@ import android.widget.*;
 import android.graphics.*;
 import android.util.*;
 import android.content.*;
+import android.content.res.*;
 
 public class SchemaView extends LinearLayout
 {
@@ -34,5 +35,9 @@ public class SchemaView extends LinearLayout
 	public void init()
 	{
 		attrText = attributes.getAttributeValue("http://neissa.org", "text");
+		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+			setPadding(6,2,6,2);
+		else
+			setPadding(2,2,2,6);
 	}
 }
