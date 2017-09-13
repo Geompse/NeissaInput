@@ -9,6 +9,9 @@ import android.widget.*;
 import android.view.View.*;
 import android.view.inputmethod.*;
 import android.content.res.*;
+import android.util.*;
+import android.content.pm.PackageManager.*;
+import android.content.pm.*;
 
 public class MainService extends InputMethodService
 {
@@ -25,6 +28,11 @@ public class MainService extends InputMethodService
 			int[] select = {0,0,0};
 			switch (item.attrSpecial)
 			{
+				case "SELECT_UP":
+					select[0] = 0;
+					select[1] = 0;
+					select[2] = KeyEvent.KEYCODE_DPAD_UP;
+					break;
 				case "SELECT1_LEFT":
 					select[0] = -1;
 					select[1] = 0;
@@ -34,16 +42,6 @@ public class MainService extends InputMethodService
 					select[0] = 1;
 					select[1] = 0;
 					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
-					break;
-				case "SELECT1_UP":
-					select[0] = -100;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_UP;
-					break;
-				case "SELECT1_DOWN":
-					select[0] = 100;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_DOWN;
 					break;
 				case "LANG":
 					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
@@ -64,14 +62,9 @@ public class MainService extends InputMethodService
 					select[1] = 1;
 					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
 					break;
-				case "SELECT2_UP":
+				case "SELECT_DOWN":
 					select[0] = 0;
-					select[1] = -100;
-					select[2] = KeyEvent.KEYCODE_DPAD_UP;
-					break;
-				case "SELECT2_DOWN":
-					select[0] = 0;
-					select[1] = 100;
+					select[1] = 0;
 					select[2] = KeyEvent.KEYCODE_DPAD_DOWN;
 					break;
 
@@ -156,7 +149,7 @@ public class MainService extends InputMethodService
 			if (select[2] != 0)
 			{
 				ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
-				if (et != null)
+				if (select[0]+select[1] != 0 && et != null)
 				{
 					int start = Math.min(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
 					int stop = Math.max(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
@@ -190,6 +183,20 @@ public class MainService extends InputMethodService
 		current = this;
 		return init(getLayoutInflater(),getCurrentSchema());
 	}
+
+	/*@Override
+	public void onStartInputView(EditorInfo info, boolean restarting)
+	{
+		// colorControlActivated
+		try
+		{
+			Log.e("inputneissa", "" + getPackageManager().getPackageInfo(info.packageName, PackageManager.GET_ACTIVITIES|PackageManager.GET_META_DATA).activities[0].getThemeResource());
+		}
+		catch (PackageManager.NameNotFoundException e)
+		{}
+		// TODO: Implement this method
+		super.onStartInputView(info, restarting);
+	}*/
 
 	@Override
 	public boolean onEvaluateFullscreenMode()
