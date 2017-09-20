@@ -65,7 +65,9 @@ public class KeyView extends TextView
 			if(parent != null)
 			{
 				String text = ((SchemaView)parent).attrText;
-				setText("JP".equals(text)?"🇯🇵":("BR".equals(text)?"🇧🇷":"🇫🇷"));
+				for(String[] schema : MainService.schemas)
+					if(schema[0].equalsIgnoreCase(text))
+						setText(schema[1]);
 			}
 		}
 	}

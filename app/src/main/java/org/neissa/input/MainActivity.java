@@ -24,12 +24,12 @@ public class MainActivity extends Activity
 		LinearLayout schemaView = new LinearLayout(this);
 		schemaView.setOrientation(LinearLayout.VERTICAL);
 		schemaView.setGravity(Gravity.CENTER);
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr));
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemafr_large));
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr));
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemabr_large));
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemajp));
-		schemaView.addView(MainService.init(getLayoutInflater(),R.layout.schemajp_large));
+		for(String[] schema : MainService.schemas)
+			for(String mode : (new String[]{"","_large"}))
+			{
+				int resource = getResources().getIdentifier("schema" + schema[0] + mode, "layout", getPackageName());
+				schemaView.addView(MainService.init(getLayoutInflater(),resource));
+			}
 		for(int i=0; i<schemaView.getChildCount(); i++)
 			((LinearLayout)((LinearLayout)schemaView.getChildAt(i)).getChildAt(0)).getLayoutParams().height = i%2 == 1 ? 250 : 500;
 		mainView.addView(schemaView);

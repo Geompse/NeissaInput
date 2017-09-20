@@ -17,6 +17,12 @@ public class MainService extends InputMethodService
 {
 	public static MainService current;
 
+	public static String[][] schemas = {
+		{"fr","🇫🇷"},
+		{"br","🇧🇷"},
+		{"en","🇬🇧"},
+		{"jp","🇯🇵"},
+	};
 	public void exec(KeyView item, boolean longPressed)
 	{
 		InputConnection ic = getCurrentInputConnection();
@@ -47,7 +53,18 @@ public class MainService extends InputMethodService
 					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = sharedPref.edit();
 					String currentSchemaname = sharedPref.getString("schemaname", "schemafr");
-					String schemaname = currentSchemaname.equals("schemafr") ? "schemabr" : (currentSchemaname.equals("schemabr") ? "schemajp" : "schemafr");
+					String schemaname = "schema"+schemas[0][0];
+					boolean next = false;
+					for(String[] schema : schemas)
+					{
+						if(("schema"+schema[0]).equals(currentSchemaname))
+							next = true;
+						else if(next)
+						{
+							schemaname = "schema"+schema[0];
+							next = false;
+						}
+					}
 					editor.putString("schemaname", schemaname);
 					editor.commit();
 					setInputView(init(getLayoutInflater(), getCurrentSchema()));
@@ -207,7 +224,14 @@ public class MainService extends InputMethodService
 	public int getCurrentSchema()
 	{
 		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
-        return getResources().getIdentifier(sharedPref.getString("schemaname", "schemafr") + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+        String schemaname = sharedPref.getString("schemaname", "schemafr");
+		boolean found = false;
+		for(String[] schema : schemas)
+			if(("schema"+schema[0]).equals(schemaname))
+				found = true;
+		if(!found)
+			schemaname = "schema" + schemas[0][0];
+		return getResources().getIdentifier(schemaname + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
 	}
 	public static View init(LayoutInflater parent, int schema)
 	{
