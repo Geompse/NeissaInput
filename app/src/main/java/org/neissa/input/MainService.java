@@ -148,14 +148,14 @@ public class MainService extends InputMethodService
 			}
 			if (select[2] != 0)
 			{
-				ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
+				/*ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
 				if (select[0]+select[1] != 0 && et != null)
 				{
 					int start = Math.min(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
 					int stop = Math.max(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
 					ic.setSelection(Math.min(start + select[0], stop), Math.max(start, stop + select[1]));
 				}
-				else
+				else*/
 				{
 					action = select[2];
 					modifier = (longPressed ? KeyEvent.META_CTRL_ON : 0) + KeyEvent.META_SHIFT_ON;

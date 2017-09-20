@@ -1,10 +1,10 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
 	<include layout="@layout/separator_y" />
 	<LinearLayout android:weightSum="10" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="28" android:gravity="top|center">
+		<org.neissa.input.KeyView neissa:special="SPACE" android:text="Espace/Entrée" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="6" />
+		<include layout="@layout/separator_x" />
 		<org.neissa.input.KeyView neissa:special="ARROW_LEFT" android:text="⬅" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:special="ARROW_RIGHT" android:text="➡" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-		<include layout="@layout/separator_x" />
-		<org.neissa.input.KeyView neissa:special="SPACE" android:text="Espace/Entrée" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="6" />
 		<include layout="@layout/separator_x" />
 		<org.neissa.input.KeyView neissa:special="ARROW_UP" android:text="⬆" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:special="ARROW_DOWN" android:text="⬇" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />

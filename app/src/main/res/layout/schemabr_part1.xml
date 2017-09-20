@@ -1,7 +1,6 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
 	<include layout="@layout/part_header" w="41" />
 	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
-		<include layout="@layout/part_delete_top" />
 		<org.neissa.input.KeyView neissa:short="ã" neissa:long="Ã" android:text="ã" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:short="á" neissa:long="Á" android:text="á" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:short="â" neissa:long="Â" android:text="â" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
@@ -14,12 +13,13 @@
 		<org.neissa.input.KeyView neissa:short="ô" neissa:long="Ô" android:text="ô" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:short="ú" neissa:long="Ú" android:text="ú" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:short="û" neissa:long="Û" android:text="û" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<include layout="@layout/part_delete_top" />
 		<include layout="@layout/part_suppr_top" />
 	</LinearLayout>
 	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="20" android:gravity="top|center">
-		<include layout="@layout/part_delete_bottom" />
 		<include layout="@layout/part_digits" />
 		<org.neissa.input.KeyView neissa:short="ç" neissa:long="Ç" android:text="ç" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<include layout="@layout/part_delete_bottom" />
 		<include layout="@layout/part_suppr_bottom" />
 	</LinearLayout>
 </merge>
