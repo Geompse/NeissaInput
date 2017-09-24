@@ -1,11 +1,11 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
-	<include layout="@layout/part_header" w="41" />
+	<include layout="@layout/part_header" w="60" />
 	<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 		<include layout="@layout/part_digits" />
 		<include layout="@layout/part_delete_top" />
 		<include layout="@layout/part_suppr_top" />
 	</LinearLayout>
-	<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:gravity="top|center">
+	<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="4dip" android:gravity="top|center">
 		<TextView android:text="" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="11" />
 		<include layout="@layout/part_delete_bottom" />
 		<include layout="@layout/part_suppr_bottom" />

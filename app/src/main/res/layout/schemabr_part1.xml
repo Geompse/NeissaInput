@@ -1,5 +1,5 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
-	<include layout="@layout/part_header" w="41" />
+	<include layout="@layout/part_header" w="60" />
 	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 		<org.neissa.input.KeyView neissa:short="ã" neissa:long="Ã" android:text="ã" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<org.neissa.input.KeyView neissa:short="á" neissa:long="Á" android:text="á" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
@@ -16,7 +16,7 @@
 		<include layout="@layout/part_delete_top" />
 		<include layout="@layout/part_suppr_top" />
 	</LinearLayout>
-	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="20" android:gravity="top|center">
+	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 		<include layout="@layout/part_digits" />
 		<org.neissa.input.KeyView neissa:short="ç" neissa:long="Ç" android:text="ç" android:gravity="top|center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 		<include layout="@layout/part_delete_bottom" />

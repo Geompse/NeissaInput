@@ -7,12 +7,12 @@
 	android:gravity="bottom"
 	neissa:text="EN">
 	<LinearLayout android:layout_width="match_parent" android:layout_height="210dp" android:weightSum="2" android:orientation="horizontal" android:gravity="top|center">
-		<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="58" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
-			<include layout="@layout/schemaen_part1" w="58" />
+		<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="76" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
+			<include layout="@layout/schemaen_part1" w="76" />
 		</LinearLayout>
 		<include layout="@layout/separator_x" />
-		<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="100" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
-			<include layout="@layout/schemaen_part2" w="100" />
+		<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="120" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
+			<include layout="@layout/schemaen_part2" w="120" />
 		</LinearLayout>
 	</LinearLayout>
 </org.neissa.input.SchemaView>

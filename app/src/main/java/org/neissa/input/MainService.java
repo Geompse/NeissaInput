@@ -31,24 +31,9 @@ public class MainService extends InputMethodService
 		{
 			int action = 0;
 			int modifier = 0;
-			int[] select = {0,0,0};
+			int repeat = 1;
 			switch (item.attrSpecial)
 			{
-				case "SELECT_UP":
-					select[0] = 0;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_UP;
-					break;
-				case "SELECT1_LEFT":
-					select[0] = -1;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_LEFT;
-					break;
-				case "SELECT1_RIGHT":
-					select[0] = 1;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
-					break;
 				case "LANG":
 					SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = sharedPref.edit();
@@ -69,20 +54,25 @@ public class MainService extends InputMethodService
 					editor.commit();
 					setInputView(init(getLayoutInflater(), getCurrentSchema()));
 					return;
-				case "SELECT2_LEFT":
-					select[0] = 0;
-					select[1] = -1;
-					select[2] = KeyEvent.KEYCODE_DPAD_LEFT;
+				case "SELECT_LEFT":
+					action = KeyEvent.KEYCODE_DPAD_LEFT;
+					modifier = KeyEvent.META_SHIFT_ON;
+					repeat = longPressed ? 5 : 1;
 					break;
-				case "SELECT2_RIGHT":
-					select[0] = 0;
-					select[1] = 1;
-					select[2] = KeyEvent.KEYCODE_DPAD_RIGHT;
+				case "SELECT_RIGHT":
+					action = KeyEvent.KEYCODE_DPAD_RIGHT;
+					modifier = KeyEvent.META_SHIFT_ON;
+					repeat = longPressed ? 5 : 1;
+					break;
+				case "SELECT_UP":
+					action = KeyEvent.KEYCODE_DPAD_UP;
+					modifier = KeyEvent.META_SHIFT_ON;
+					repeat = longPressed ? 5 : 1;
 					break;
 				case "SELECT_DOWN":
-					select[0] = 0;
-					select[1] = 0;
-					select[2] = KeyEvent.KEYCODE_DPAD_DOWN;
+					action = KeyEvent.KEYCODE_DPAD_DOWN;
+					modifier = KeyEvent.META_SHIFT_ON;
+					repeat = longPressed ? 5 : 1;
 					break;
 
 				case "TAB":
@@ -142,7 +132,13 @@ public class MainService extends InputMethodService
 				case "SUPPR":
 					action = KeyEvent.KEYCODE_FORWARD_DEL;
 					break;
-
+					
+				case "SPACE":
+					action = KeyEvent.KEYCODE_SPACE;
+					break;
+				case "ENTER":
+					action = KeyEvent.KEYCODE_ENTER;
+					break;
 				case "ARROW_LEFT":
 					action = KeyEvent.KEYCODE_DPAD_LEFT;
 					if (longPressed)
@@ -153,9 +149,6 @@ public class MainService extends InputMethodService
 					if (longPressed)
 						modifier = KeyEvent.META_CTRL_ON;
 					break;
-				case "SPACE":
-					action = longPressed ? KeyEvent.KEYCODE_ENTER : KeyEvent.KEYCODE_SPACE;
-					break;
 				case "ARROW_UP":
 					action = longPressed ? KeyEvent.KEYCODE_PAGE_UP : KeyEvent.KEYCODE_DPAD_UP;
 					break;
@@ -163,25 +156,13 @@ public class MainService extends InputMethodService
 					action = longPressed ? KeyEvent.KEYCODE_PAGE_DOWN : KeyEvent.KEYCODE_DPAD_DOWN;
 					break;
 			}
-			if (select[2] != 0)
-			{
-				/*ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
-				if (select[0]+select[1] != 0 && et != null)
-				{
-					int start = Math.min(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
-					int stop = Math.max(et.startOffset+et.selectionStart,et.startOffset+et.selectionEnd);
-					ic.setSelection(Math.min(start + select[0], stop), Math.max(start, stop + select[1]));
-				}
-				else*/
-				{
-					action = select[2];
-					modifier = (longPressed ? KeyEvent.META_CTRL_ON : 0) + KeyEvent.META_SHIFT_ON;
-				}
-			}
 			if (action != 0)
 			{
-				ic.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, action, 0, modifier));
-				ic.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), KeyEvent.ACTION_UP, action, 0, modifier));
+				for(int i = 0; i<repeat; i++)
+				{
+					ic.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, action, 0, modifier));
+					ic.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), KeyEvent.ACTION_UP, action, 0, modifier));
+				}
 			}
 		}
 		else

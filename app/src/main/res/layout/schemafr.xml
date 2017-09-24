@@ -6,9 +6,9 @@
 	android:orientation="vertical"
 	android:gravity="bottom"
 	neissa:text="FR">
-	<LinearLayout android:layout_width="match_parent" android:layout_height="420dp" android:weightSum="176" android:orientation="vertical" android:gravity="top|center">
-		<include layout="@layout/schemafr_part1" w="76" />
+	<LinearLayout android:layout_width="match_parent" android:layout_height="470dp" android:weightSum="210" android:orientation="vertical" android:gravity="top|center">
+		<include layout="@layout/schemafr_part1" w="90" />
 		<include layout="@layout/separator_y" />
-		<include layout="@layout/schemafr_part2" w="100" />
+		<include layout="@layout/schemafr_part2" w="120" />
 	</LinearLayout>
 </org.neissa.input.SchemaView>

@@ -2,5 +2,5 @@
 <resources>
 	<dimen name="keyWidth">10dp</dimen>
 	<dimen name="keyHeight">10dp</dimen>
-	<dimen name="padding">4dp</dimen>
+	<dimen name="padding">2dp</dimen>
 </resources>
