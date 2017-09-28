@@ -16,6 +16,7 @@ import android.content.pm.*;
 public class MainService extends InputMethodService
 {
 	public static MainService current;
+	public Boolean zoom = false;
 
 	public static String[][] schemas = {
 		{"fr","🇫🇷"},
@@ -54,6 +55,10 @@ public class MainService extends InputMethodService
 					editor.commit();
 					setInputView(init(getLayoutInflater(), getCurrentSchema()));
 					return;
+				case "ZOOM":
+					zoom = !zoom;
+					setInputView(init(getLayoutInflater(), getCurrentSchema()));
+					break;
 				case "SELECT_LEFT":
 					action = KeyEvent.KEYCODE_DPAD_LEFT;
 					modifier = KeyEvent.META_SHIFT_ON;
@@ -205,14 +210,14 @@ public class MainService extends InputMethodService
 	public int getCurrentSchema()
 	{
 		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
-        String schemaname = sharedPref.getString("schemaname", "schemafr");
+        String schemaname = sharedPref.getString("schemaname", "schema|}fr");
 		boolean found = false;
 		for(String[] schema : schemas)
 			if(("schema"+schema[0]).equals(schemaname))
 				found = true;
 		if(!found)
 			schemaname = "schema" + schemas[0][0];
-		return getResources().getIdentifier(schemaname + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+		return getResources().getIdentifier(schemaname + (zoom?"big":"") + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
 	}
 	public static View init(LayoutInflater parent, int schema)
 	{

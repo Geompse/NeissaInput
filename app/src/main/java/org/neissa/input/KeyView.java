@@ -13,6 +13,7 @@ import java.util.*;
 public class KeyView extends TextView
 {
 	public AttributeSet attributes;
+	public String attrTransparent;
 	public String attrShort;
 	public String attrLong;
 	public String attrSpecial;
@@ -70,6 +71,8 @@ public class KeyView extends TextView
 						setText(schema[1]);
 			}
 		}
+		if("ZOOM".equals(attrSpecial))
+			setText("🔍");
 	}
 
 	@Override
@@ -81,6 +84,7 @@ public class KeyView extends TextView
 
 	public void init()
 	{
+		attrTransparent = attributes.getAttributeValue("http://neissa.org", "transparent");
 		attrShort = attributes.getAttributeValue("http://neissa.org", "short");
 		attrLong = attributes.getAttributeValue("http://neissa.org", "long");
 		attrSpecial = attributes.getAttributeValue("http://neissa.org", "special");
@@ -89,11 +93,11 @@ public class KeyView extends TextView
 		if (!runnables.containsKey(uid))
 			runnables.put(uid, new myRunnable());
 		runnables.get(uid).touchItem = this;
-		setTextColor(attrSpecial != null && attrSpecial.indexOf("SELECT") == 0 ? 0xFF00CCFF : 0xFFFFFFFF);
+		setTextColor("oui".equals(attrTransparent) ? 0xFF00CCFF : 0xFFFFFFFF);
 		setTextSize(MainService.current != null ? 20.0f : 12.0f);
-		if ("LANG".equals(attrSpecial))
+		if ("LANG".equals(attrSpecial) || "ZOOM".equals(attrSpecial))
 			setBackgroundColor(0x00000000);
-		else if (attrSpecial != null && attrSpecial.startsWith("SELECT"))
+		else if ("oui".equals(attrTransparent))
 			setBackgroundResource(R.drawable.transparentkey);
 		else if (attrHalf == null)
 			setBackgroundResource(R.drawable.key);
@@ -127,9 +131,9 @@ public class KeyView extends TextView
 						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
-						if ("LANG".equals(touchItem.attrSpecial))
+						if ("LANG".equals(touchItem.attrSpecial) || "ZOOM".equals(attrSpecial))
 							setBackgroundColor(0x00000000);
-						else if (touchItem.attrSpecial != null && attrSpecial.startsWith("SELECT"))
+						else if ("oui".equals(touchItem.attrTransparent))
 							setBackgroundResource(R.drawable.transparentkey);
 						else if (touchItem.attrHalf == null)
 							setBackgroundResource(R.drawable.key);
