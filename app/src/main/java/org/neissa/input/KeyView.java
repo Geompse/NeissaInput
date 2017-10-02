@@ -116,6 +116,9 @@ public class KeyView extends TextView
 						touchItem = (KeyView)item;
 						touchItem.touchDone = false;
 						touchItem.firstDone = false;
+						touchItem.setScaleX(1.50f);
+						touchItem.setScaleY(1.50f);
+						touchItem.setElevation(200.00f);
 						if (touchItem.attrHalf == null)
 							touchItem.setBackgroundColor(0xFFFF8800);
 						else
@@ -128,6 +131,9 @@ public class KeyView extends TextView
 					}
 					else if (event.getAction() == MotionEvent.ACTION_UP)
 					{
+						touchItem.setScaleX(1.00f);
+						touchItem.setScaleY(1.00f);
+						touchItem.setElevation(0.00f);
 						handler.removeCallbacks(runnables.get(uid));
 						if (MainService.current != null && !touchItem.touchDone)
 							MainService.current.exec(touchItem, false);
