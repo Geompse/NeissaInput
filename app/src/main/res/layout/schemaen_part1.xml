@@ -1,5 +1,8 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
-	<include layout="@layout/part_header" w="60" />
+	<include layout="@layout/part_header_topmost" w="15" />
+	<include layout="@layout/part_header_shortcuts" w="15" />
+	<include layout="@layout/part_specialchars" w="30" />
+	<include layout="@layout/separator_y" />
 	<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 		<include layout="@layout/part_digits" />
 		<include layout="@layout/part_delete_top" />

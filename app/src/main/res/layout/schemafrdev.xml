@@ -1,0 +1,14 @@
+<org.neissa.input.SchemaView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:neissa="http://neissa.org"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="bottom"
+	neissa:text="FR">
+	<LinearLayout android:layout_width="match_parent" android:layout_height="470dp" android:weightSum="210" android:orientation="vertical" android:gravity="top|center">
+		<include layout="@layout/schemafrdev_part1" w="90" />
+		<include layout="@layout/separator_y" />
+		<include layout="@layout/schemafrdev_part2" w="120" />
+	</LinearLayout>
+</org.neissa.input.SchemaView>

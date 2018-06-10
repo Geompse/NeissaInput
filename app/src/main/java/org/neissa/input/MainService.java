@@ -17,6 +17,7 @@ public class MainService extends InputMethodService
 {
 	public static MainService current;
 	public Boolean zoom = false;
+	public String mode = "";
 
 	public static String[][] schemas = {
 		{"fr","🇫🇷"},
@@ -57,6 +58,17 @@ public class MainService extends InputMethodService
 					return;
 				case "ZOOM":
 					zoom = !zoom;
+					setInputView(init(getLayoutInflater(), getCurrentSchema()));
+					break;
+				case "MODE":
+					if("".equals(mode))
+						mode = "dev";
+					else
+						mode = "";
+					SharedPreferences sharedPref2 = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
+					SharedPreferences.Editor editor2 = sharedPref2.edit();
+					editor2.putString("schemamode", mode);
+					editor2.commit();
 					setInputView(init(getLayoutInflater(), getCurrentSchema()));
 					break;
 				case "SELECT_LEFT":
@@ -127,10 +139,13 @@ public class MainService extends InputMethodService
 					action = KeyEvent.KEYCODE_F4;
 					modifier = KeyEvent.META_ALT_ON;
 					break;
-				case "ESC":
+				case "ESCAPE":
 					action = KeyEvent.KEYCODE_ESCAPE;
 					break;
 
+				case "INSERT":
+					action = KeyEvent.KEYCODE_INSERT;
+					break;
 				case "DELETE":
 					action = KeyEvent.KEYCODE_DEL;
 					break;
@@ -160,6 +175,44 @@ public class MainService extends InputMethodService
 				case "ARROW_DOWN":
 					action = longPressed ? KeyEvent.KEYCODE_PAGE_DOWN : KeyEvent.KEYCODE_DPAD_DOWN;
 					break;
+					
+				case "F1":
+					action = KeyEvent.KEYCODE_F1;
+					break;
+				case "F2":
+					action = KeyEvent.KEYCODE_F2;
+					break;
+				case "F3":
+					action = KeyEvent.KEYCODE_F3;
+					break;
+				case "F4":
+					action = KeyEvent.KEYCODE_F4;
+					break;
+				case "F5":
+					action = KeyEvent.KEYCODE_F5;
+					break;
+				case "F6":
+					action = KeyEvent.KEYCODE_F6;
+					break;
+				case "F7":
+					action = KeyEvent.KEYCODE_F7;
+					break;
+				case "F8":
+					action = KeyEvent.KEYCODE_F8;
+					break;
+				case "F9":
+					action = KeyEvent.KEYCODE_F9;
+					break;
+				case "F10":
+					action = KeyEvent.KEYCODE_F10;
+					break;
+				case "F11":
+					action = KeyEvent.KEYCODE_F11;
+					break;
+				case "F12":
+					action = KeyEvent.KEYCODE_F12;
+					break;
+					
 			}
 			if (action != 0)
 			{
@@ -210,14 +263,24 @@ public class MainService extends InputMethodService
 	public int getCurrentSchema()
 	{
 		SharedPreferences sharedPref = getSharedPreferences("org.neissa.input", Context.MODE_PRIVATE);
-        String schemaname = sharedPref.getString("schemaname", "schema|}fr");
+        String schemaname = sharedPref.getString("schemaname", "schemafr");
+		mode = sharedPref.getString("schemamode", "");
 		boolean found = false;
 		for(String[] schema : schemas)
 			if(("schema"+schema[0]).equals(schemaname))
 				found = true;
 		if(!found)
 			schemaname = "schema" + schemas[0][0];
-		return getResources().getIdentifier(schemaname + (zoom?"big":"") + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+		int schema = getResources().getIdentifier(schemaname + (zoom?"big":"") + (mode!=null&&!"".equals(mode)?mode:"")+(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+		if(schema == 0)
+			schema = getResources().getIdentifier(schemaname + (zoom?"big":"") + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+		if(schema == 0)
+			schema = getResources().getIdentifier(schemaname + (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?"_large":""), "layout", getPackageName());
+		if(schema == 0)
+			schema = getResources().getIdentifier(schemaname, "layout", getPackageName());
+		if(schema == 0)
+			schema = R.layout.schemafr;
+		return schema;
 	}
 	public static View init(LayoutInflater parent, int schema)
 	{

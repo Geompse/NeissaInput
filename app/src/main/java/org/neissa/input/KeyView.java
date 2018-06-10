@@ -10,9 +10,10 @@ import android.content.res.*;
 import android.content.pm.*;
 import java.util.*;
 
-public class KeyView extends TextView
+public class KeyView extends TextView implements OnTouchListener
 {
 	public AttributeSet attributes;
+	public String attrMode;
 	public String attrTransparent;
 	public String attrShort;
 	public String attrLong;
@@ -26,7 +27,9 @@ public class KeyView extends TextView
 
 	public static HashMap<String,myRunnable> runnables = new HashMap<String,myRunnable>();
 	public static Handler handler = new android.os.Handler();
-	class myRunnable implements Runnable {
+	
+	class myRunnable implements Runnable
+	{
 		public KeyView touchItem;
 		public void run()
 		{
@@ -38,6 +41,7 @@ public class KeyView extends TextView
 			touchItem.firstDone = true;
 		}
 	}
+	
 	public KeyView(Context context)
 	{
 		super(context);
@@ -57,7 +61,7 @@ public class KeyView extends TextView
 	}
 	protected void onDraw(Canvas canvas)
 	{
-        super.onDraw(canvas);
+		super.onDraw(canvas);
 		if ("LANG".equals(attrSpecial))
 		{
 			ViewParent parent = this.getParent();
@@ -73,6 +77,8 @@ public class KeyView extends TextView
 		}
 		if("ZOOM".equals(attrSpecial))
 			setText("🔍");
+		if("MODE".equals(attrSpecial))
+			setText("😈");
 	}
 
 	@Override
@@ -84,6 +90,7 @@ public class KeyView extends TextView
 
 	public void init()
 	{
+		attrMode = attributes.getAttributeValue("http://neissa.org", "mode");
 		attrTransparent = attributes.getAttributeValue("http://neissa.org", "transparent");
 		attrShort = attributes.getAttributeValue("http://neissa.org", "short");
 		attrLong = attributes.getAttributeValue("http://neissa.org", "long");
@@ -95,7 +102,7 @@ public class KeyView extends TextView
 		runnables.get(uid).touchItem = this;
 		setTextColor("oui".equals(attrTransparent) ? 0xFF00CCFF : 0xFFFFFFFF);
 		setTextSize(MainService.current != null ? 20.0f : 12.0f);
-		if ("LANG".equals(attrSpecial) || "ZOOM".equals(attrSpecial))
+		if ("LANG".equals(attrSpecial) || "ZOOM".equals(attrSpecial) || "MODE".equals(attrSpecial))
 			setBackgroundColor(0x00000000);
 		else if ("oui".equals(attrTransparent))
 			setBackgroundResource(R.drawable.transparentkey);
@@ -105,52 +112,51 @@ public class KeyView extends TextView
 			setBackgroundResource(R.drawable.halfkey1);
 		else if (attrHalf.equals("2"))
 			setBackgroundResource(R.drawable.halfkey2);
-		setOnTouchListener(new OnTouchListener() {
+		setOnTouchListener(this);
+	}
 
-				@Override
-				public boolean onTouch(View item, MotionEvent event)
-				{
-					if (event.getAction() == MotionEvent.ACTION_DOWN)
-					{
-						handler.removeCallbacks(runnables.get(uid));
-						touchItem = (KeyView)item;
-						touchItem.touchDone = false;
-						touchItem.firstDone = false;
-						touchItem.setScaleX(1.50f);
-						touchItem.setScaleY(1.50f);
-						touchItem.setElevation(200.00f);
-						if (touchItem.attrHalf == null)
-							touchItem.setBackgroundColor(0xFFFF8800);
-						else
-						{
-							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundColor(0xFFFF8800);
-							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundColor(0xFFFF8800);
-						}
-						if(!"LANG".equals(touchItem.attrSpecial))
-							handler.postDelayed(runnables.get(uid), 150);
-					}
-					else if (event.getAction() == MotionEvent.ACTION_UP)
-					{
-						touchItem.setScaleX(1.00f);
-						touchItem.setScaleY(1.00f);
-						touchItem.setElevation(0.00f);
-						handler.removeCallbacks(runnables.get(uid));
-						if (MainService.current != null && !touchItem.touchDone)
-							MainService.current.exec(touchItem, false);
-						if ("LANG".equals(touchItem.attrSpecial) || "ZOOM".equals(attrSpecial))
-							setBackgroundColor(0x00000000);
-						else if ("oui".equals(touchItem.attrTransparent))
-							setBackgroundResource(R.drawable.transparentkey);
-						else if (touchItem.attrHalf == null)
-							setBackgroundResource(R.drawable.key);
-						else
-						{
-							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundResource(R.drawable.halfkey1);
-							runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundResource(R.drawable.halfkey2);
-						}
-					}
-					return true;
-				}
-			});
+	@Override
+	public boolean onTouch(View item, MotionEvent event)
+	{
+		if (event.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			handler.removeCallbacks(runnables.get(uid));
+			touchItem = (KeyView)item;
+			touchItem.touchDone = false;
+			touchItem.firstDone = false;
+			touchItem.setScaleX(1.50f);
+			touchItem.setScaleY(1.50f);
+			touchItem.setElevation(200.00f);
+			if (touchItem.attrHalf == null)
+				touchItem.setBackgroundColor(0xFFFF8800);
+			else
+			{
+				runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundColor(0xFFFF8800);
+				runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundColor(0xFFFF8800);
+			}
+			if(!"LANG".equals(touchItem.attrSpecial))
+				handler.postDelayed(runnables.get(uid), 150);
+		}
+		else if (event.getAction() == MotionEvent.ACTION_UP)
+		{
+			touchItem.setScaleX(1.00f);
+			touchItem.setScaleY(1.00f);
+			touchItem.setElevation(0.00f);
+			handler.removeCallbacks(runnables.get(uid));
+			if (MainService.current != null && !touchItem.touchDone)
+				MainService.current.exec(touchItem, false);
+			if ("LANG".equals(touchItem.attrSpecial) || "ZOOM".equals(attrSpecial) || "MODE".equals(attrSpecial))
+				setBackgroundColor(0x00000000);
+			else if ("oui".equals(touchItem.attrTransparent))
+				setBackgroundResource(R.drawable.transparentkey);
+			else if (touchItem.attrHalf == null)
+				setBackgroundResource(R.drawable.key);
+			else
+			{
+				runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#1").touchItem.setBackgroundResource(R.drawable.halfkey1);
+				runnables.get(touchItem.attrShort+"#"+touchItem.attrLong+"#"+touchItem.attrSpecial+"#2").touchItem.setBackgroundResource(R.drawable.halfkey2);
+			}
+		}
+		return true;
 	}
 }

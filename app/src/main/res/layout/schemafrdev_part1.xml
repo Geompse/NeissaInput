@@ -1,0 +1,27 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:neissa="http://neissa.org">
+	<include layout="@layout/part_header_topmost" w="15" />
+	<include layout="@layout/part_header_shortcuts" w="15" />
+	<include layout="@layout/part_specialchars" w="30" />
+	<include layout="@layout/separator_y" />
+	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+		<org.neissa.input.KeyView neissa:special="F1" android:text="F1" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F2" android:text="F2" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F3" android:text="F3" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F4" android:text="F4" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F5" android:text="F5" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F6" android:text="F6" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F7" android:text="F7" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F8" android:text="F8" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F9" android:text="F9" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F10" android:text="F10" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F11" android:text="F11" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<org.neissa.input.KeyView neissa:special="F12" android:text="F12" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+		<include layout="@layout/part_delete_top" />
+		<include layout="@layout/part_suppr_top" />
+	</LinearLayout>
+	<LinearLayout android:weightSum="14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
+		<include layout="@layout/part_digitsdev" />
+		<include layout="@layout/part_delete_bottom" />
+		<include layout="@layout/part_suppr_bottom" />
+	</LinearLayout>
+</merge>

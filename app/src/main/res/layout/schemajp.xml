@@ -6,8 +6,9 @@
 	android:orientation="vertical"
 	android:gravity="bottom"
 	neissa:text="JP">
-	<LinearLayout android:layout_width="match_parent" android:layout_height="500dp" android:weightSum="270" android:orientation="vertical" android:gravity="top|center">
-		<include layout="@layout/part_header" w="60" />
+	<LinearLayout android:layout_width="match_parent" android:layout_height="400dp" android:weightSum="225" android:orientation="vertical" android:gravity="top|center">
+		<include layout="@layout/part_header_topmost" w="15" />
+		<include layout="@layout/separator_y" />
 		<LinearLayout android:weightSum="13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="15" android:gravity="top|center">
 			<org.neissa.input.KeyView neissa:short="ぁ" neissa:long="ァ" android:text="ぁァ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
 			<org.neissa.input.KeyView neissa:short="ぃ" neissa:long="ィ" android:text="ぃィ" android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />

@@ -8,8 +8,9 @@
 	neissa:text="JP">
 	<LinearLayout android:layout_width="match_parent" android:layout_height="320dp" android:weightSum="125" android:orientation="vertical" android:gravity="top|center">
 		<LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:weightSum="2" android:orientation="horizontal" android:gravity="top|center" android:layout_weight="35">
-			<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="60" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
-				<include layout="@layout/part_header" w="60" />
+			<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="15" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
+				<include layout="@layout/part_header_topmost" w="15" />
+				<include layout="@layout/separator_y" />
 			</LinearLayout>
 			<include layout="@layout/separator_x" />
 			<LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:weightSum="30" android:orientation="vertical" android:gravity="top|center" android:layout_weight="1">
