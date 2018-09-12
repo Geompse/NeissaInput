@@ -213,6 +213,9 @@ public class MainService extends InputMethodService
 					action = KeyEvent.KEYCODE_F12;
 					break;
 					
+				default:
+					ic.commitText("TODO", 1);
+					break;
 			}
 			if (action != 0)
 			{
